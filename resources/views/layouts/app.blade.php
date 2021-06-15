@@ -9,7 +9,7 @@
 
 
 
-        <title>Document</title>
+        <title>Laravel8.4</title>
     </head>
     <body class="bg-gray-200">
         <nav class="p-6 bg-white flex justify-between mb-2">
@@ -18,10 +18,10 @@
                     <a href="" class="p-3">Home</a>
                 </li>
                 <li>
-                    <a href="" class="p-3">Dashboard</a>
+                    <a href="{{ route('dashboard') }}" class="p-3">Dashboard</a>
                 </li>
                 <li>
-                    <a href="{{ route('post')}}" class="p-3">Post</a>
+                    <a href="{{ route('posts')}}" class="p-3">Post</a>
                 </li>
             </ul>
             <ul class="flex items-center">

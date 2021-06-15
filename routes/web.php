@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,11 @@ use App\Http\Controllers\PostController;
 |
 */
 
+Route::get('/dashboard', [DashboardController::class, 'dash']) ->name('dashboard');
+
+
 Route::get('/register', [RegisterController::class, 'index']) ->name('register');
+Route::post('/register', [RegisterController::class, 'store']) ->name('register');
 
 
 /*Route::get('/posts', function () {
@@ -24,6 +29,6 @@ Route::get('/register', [RegisterController::class, 'index']) ->name('register')
 });
 */
 
-Route::get('/post', [PostController::class, 'post']) -> name('post');
+Route::get('/posts', [PostController::class, 'posts']) -> name('posts');
 
 Route::get('/login', [LoginController::class, 'login']) -> name('login');

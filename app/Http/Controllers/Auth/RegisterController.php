@@ -2,25 +2,31 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
 class RegisterController extends Controller
 {
-    public function index() 
+    public function __construct()
+    {
+        $this->middleware(['guest']);
+
+    }
+    public function index()
     {
          return view('auth.register');
     }
 
-    //the folowing functionns is to ensure user record is accepted and stored in the DB 
+    //the folowing functionns is to ensure user record is accepted and stored in the DB
     public function store(Request $request)
     {
         // to display user submited details
         //dd($request->email);
-        
+
         //User validation
         $this->validate($request, [
             'name' => 'required|max:255',
@@ -43,10 +49,21 @@ class RegisterController extends Controller
 
 
         //Sign the user in
+        auth()-> attempt($request->only('email', 'password'));
+
+        //alternatively you can use
+        /*
+        Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password
+
+        ])
+
+        */
 
         return redirect() -> route('dashboard');
 
-    
+
 
 
         // redirect to a specific page
